@@ -1,0 +1,15 @@
+name: games-content
+on: { push: { paths: ['packages/games/**', 'packages/content/**'] }, pull_request: {} }
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i -g typescript@5
+      - name: Content validation
+        run: node packages/content/scripts/validate.mjs
+      - name: Games logic typecheck + tests
+        working-directory: packages/games
+        run: tsc -p tsconfig.logic.json && echo '{"type":"commonjs"}' > dist-test/package.json && node --test tests/*.test.mjs

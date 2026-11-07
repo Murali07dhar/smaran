@@ -1,0 +1,843 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SMARAN AI Engine",
+    "description": "Detect -> Associate -> Personalize. Support tool, never a diagnosis.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/ai/triggers/update": {
+      "post": {
+        "summary": "Triggers Update",
+        "operationId": "triggers_update_ai_triggers_update_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TriggersUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggersUpdateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/difficulty/next": {
+      "post": {
+        "summary": "Difficulty Next",
+        "operationId": "difficulty_next_ai_difficulty_next_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DifficultyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DifficultyResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/severity/estimate": {
+      "post": {
+        "summary": "Severity Estimate",
+        "operationId": "severity_estimate_ai_severity_estimate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeverityRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeverityResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/emotion/fuse": {
+      "post": {
+        "summary": "Emotion Fuse",
+        "operationId": "emotion_fuse_ai_emotion_fuse_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FuseRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuseResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/content/generate": {
+      "post": {
+        "summary": "Content Generate",
+        "operationId": "content_generate_ai_content_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Baseline": {
+        "properties": {
+          "valence_mean": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": -1.0,
+            "title": "Valence Mean",
+            "default": 0.0
+          },
+          "valence_std": {
+            "type": "number",
+            "maximum": 2.0,
+            "minimum": 0.0,
+            "title": "Valence Std",
+            "default": 0.5
+          },
+          "arousal_mean": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": -1.0,
+            "title": "Arousal Mean",
+            "default": 0.0
+          },
+          "arousal_std": {
+            "type": "number",
+            "maximum": 2.0,
+            "minimum": 0.0,
+            "title": "Arousal Std",
+            "default": 0.5
+          },
+          "n": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "N",
+            "default": 0
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "Baseline",
+        "description": "Per-patient calibration from the first N sessions (z-scoring)."
+      },
+      "ContentRequest": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "reminder_phrase",
+              "game_prompt"
+            ],
+            "title": "Kind"
+          },
+          "locale": {
+            "type": "string",
+            "enum": [
+              "as",
+              "bn",
+              "ne",
+              "brx",
+              "mni",
+              "en",
+              "lus",
+              "kha",
+              "grt"
+            ],
+            "title": "Locale"
+          },
+          "context": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "locale"
+        ],
+        "title": "ContentRequest"
+      },
+      "ContentResponse": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "gemini",
+              "template"
+            ],
+            "title": "Source"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text",
+          "source"
+        ],
+        "title": "ContentResponse"
+      },
+      "DifficultyRequest": {
+        "properties": {
+          "patient_id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Patient Id"
+          },
+          "game_id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Game Id"
+          },
+          "recent": {
+            "items": {
+              "$ref": "#/components/schemas/RecentItem"
+            },
+            "type": "array",
+            "maxItems": 200,
+            "title": "Recent"
+          },
+          "current_difficulty": {
+            "type": "integer",
+            "maximum": 10.0,
+            "minimum": 1.0,
+            "title": "Current Difficulty"
+          }
+        },
+        "type": "object",
+        "required": [
+          "patient_id",
+          "game_id",
+          "current_difficulty"
+        ],
+        "title": "DifficultyRequest"
+      },
+      "DifficultyResponse": {
+        "properties": {
+          "difficulty": {
+            "type": "integer",
+            "maximum": 10.0,
+            "minimum": 1.0,
+            "title": "Difficulty"
+          },
+          "rationale": {
+            "type": "string",
+            "title": "Rationale"
+          }
+        },
+        "type": "object",
+        "required": [
+          "difficulty",
+          "rationale"
+        ],
+        "title": "DifficultyResponse"
+      },
+      "FuseRequest": {
+        "properties": {
+          "face": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModalityReading"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "speech": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModalityReading"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "baseline": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Baseline"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "FuseRequest"
+      },
+      "FuseResponse": {
+        "properties": {
+          "valence": {
+            "type": "number",
+            "title": "Valence"
+          },
+          "arousal": {
+            "type": "number",
+            "title": "Arousal"
+          },
+          "label": {
+            "type": "string",
+            "enum": [
+              "joy",
+              "comfort",
+              "excitement",
+              "amusement",
+              "familiarity",
+              "neutral",
+              "negative"
+            ],
+            "title": "Label"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          }
+        },
+        "type": "object",
+        "required": [
+          "valence",
+          "arousal",
+          "label",
+          "confidence"
+        ],
+        "title": "FuseResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ModalityReading": {
+        "properties": {
+          "valence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": -1.0,
+            "title": "Valence"
+          },
+          "arousal": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": -1.0,
+            "title": "Arousal"
+          },
+          "conf": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Conf"
+          }
+        },
+        "type": "object",
+        "required": [
+          "valence",
+          "arousal",
+          "conf"
+        ],
+        "title": "ModalityReading"
+      },
+      "Observation": {
+        "properties": {
+          "cue_id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Cue Id"
+          },
+          "cue_type": {
+            "type": "string",
+            "maxLength": 32,
+            "minLength": 1,
+            "title": "Cue Type"
+          },
+          "valence_label": {
+            "type": "string",
+            "enum": [
+              "joy",
+              "comfort",
+              "excitement",
+              "amusement",
+              "familiarity",
+              "neutral",
+              "negative"
+            ],
+            "title": "Valence Label"
+          },
+          "recalled": {
+            "type": "boolean",
+            "title": "Recalled"
+          },
+          "with_cue": {
+            "type": "boolean",
+            "title": "With Cue"
+          },
+          "ts": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cue_id",
+          "cue_type",
+          "valence_label",
+          "recalled",
+          "with_cue",
+          "ts"
+        ],
+        "title": "Observation"
+      },
+      "PerfSample": {
+        "properties": {
+          "ts": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ts"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "game",
+              "cue"
+            ],
+            "title": "Source",
+            "default": "game"
+          },
+          "correct": {
+            "type": "boolean",
+            "title": "Correct"
+          },
+          "response_ms": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response Ms"
+          },
+          "hints": {
+            "type": "integer",
+            "maximum": 50.0,
+            "minimum": 0.0,
+            "title": "Hints",
+            "default": 0
+          },
+          "difficulty": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 10.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Difficulty"
+          },
+          "with_cue": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "With Cue"
+          },
+          "game_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ts",
+          "correct"
+        ],
+        "title": "PerfSample",
+        "description": "Optional explicit performance sample (CCR-AI-1)."
+      },
+      "RecentItem": {
+        "properties": {
+          "correct": {
+            "type": "boolean",
+            "title": "Correct"
+          },
+          "response_ms": {
+            "type": "integer",
+            "maximum": 600000.0,
+            "minimum": 0.0,
+            "title": "Response Ms"
+          },
+          "hints": {
+            "type": "integer",
+            "maximum": 50.0,
+            "minimum": 0.0,
+            "title": "Hints",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "correct",
+          "response_ms"
+        ],
+        "title": "RecentItem"
+      },
+      "SeverityRequest": {
+        "properties": {
+          "patient_id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Patient Id"
+          },
+          "window_days": {
+            "type": "integer",
+            "maximum": 365.0,
+            "minimum": 1.0,
+            "title": "Window Days",
+            "default": 30
+          },
+          "samples": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/PerfSample"
+                },
+                "type": "array",
+                "maxItems": 5000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Samples"
+          }
+        },
+        "type": "object",
+        "required": [
+          "patient_id"
+        ],
+        "title": "SeverityRequest"
+      },
+      "SeverityResponse": {
+        "properties": {
+          "band": {
+            "type": "string",
+            "enum": [
+              "stable",
+              "watch",
+              "alert"
+            ],
+            "title": "Band"
+          },
+          "gds_style_indicator": {
+            "type": "integer",
+            "maximum": 7.0,
+            "minimum": 1.0,
+            "title": "Gds Style Indicator"
+          },
+          "drivers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Drivers"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "band",
+          "gds_style_indicator",
+          "drivers",
+          "disclaimer"
+        ],
+        "title": "SeverityResponse"
+      },
+      "TriggerOut": {
+        "properties": {
+          "cue_id": {
+            "type": "string",
+            "title": "Cue Id"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "valence_label": {
+            "type": "string",
+            "enum": [
+              "joy",
+              "comfort",
+              "excitement",
+              "amusement",
+              "familiarity",
+              "neutral",
+              "negative"
+            ],
+            "title": "Valence Label"
+          },
+          "last_validated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Last Validated At"
+          },
+          "half_life_days": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Half Life Days"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cue_id",
+          "confidence",
+          "valence_label",
+          "last_validated_at",
+          "half_life_days"
+        ],
+        "title": "TriggerOut"
+      },
+      "TriggersUpdateRequest": {
+        "properties": {
+          "patient_id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Patient Id"
+          },
+          "observations": {
+            "items": {
+              "$ref": "#/components/schemas/Observation"
+            },
+            "type": "array",
+            "maxItems": 2000,
+            "title": "Observations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "patient_id"
+        ],
+        "title": "TriggersUpdateRequest"
+      },
+      "TriggersUpdateResponse": {
+        "properties": {
+          "triggers": {
+            "items": {
+              "$ref": "#/components/schemas/TriggerOut"
+            },
+            "type": "array",
+            "title": "Triggers"
+          }
+        },
+        "type": "object",
+        "required": [
+          "triggers"
+        ],
+        "title": "TriggersUpdateResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

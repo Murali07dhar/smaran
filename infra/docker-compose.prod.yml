@@ -1,0 +1,39 @@
+# Production override: TLS 1.3 termination with Caddy; nothing else is published to the host.
+#   docker compose -f infra/docker-compose.yml -f infra/docker-compose.prod.yml --env-file infra/.env up -d
+# Requires Docker Compose >= 2.24 (uses !reset). UNTESTED in this build: review before real use.
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      SMARAN_DOMAIN: ${SMARAN_DOMAIN:?set SMARAN_DOMAIN in infra/.env}
+      ACME_EMAIL: ${ACME_EMAIL:-}
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - patient-web
+      - caregiver-web
+
+  api:
+    ports: !reset []
+  postgres:
+    ports: !reset []
+  redis:
+    ports: !reset []
+  ai:
+    ports: !reset []
+  voice:
+    ports: !reset []
+  patient-web:
+    ports: !reset []
+  caregiver-web:
+    ports: !reset []
+
+volumes:
+  caddy_data:
+  caddy_config:

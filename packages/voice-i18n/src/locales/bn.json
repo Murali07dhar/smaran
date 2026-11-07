@@ -1,0 +1,31 @@
+{
+  "_meta": { "locale": "bn", "needs_human_review": true, "source": "hand-drafted by AI, NOT verified by a native speaker" },
+  "app": { "name": "স্মরণ", "tagline": "আবেগের মাধ্যমে স্মৃতি বোঝা" },
+  "common": {
+    "yes": "হ্যাঁ", "no": "না", "next": "পরের", "repeat": "আবার বলো", "help": "সাহায্য", "done": "শেষ",
+    "back": "পিছনে", "ok": "ঠিক আছে", "save": "সংরক্ষণ", "cancel": "বাতিল", "listen": "বলতে চেপে ধরুন", "speak": "শুনুন"
+  },
+  "greeting": { "morning": "সুপ্রভাত, {{name}}।", "afternoon": "শুভ অপরাহ্ন, {{name}}।", "evening": "শুভ সন্ধ্যা, {{name}}।" },
+  "voice": {
+    "listening": "আমি শুনছি।",
+    "didnt_catch": "কোনো সমস্যা নেই। আপনি বোতাম চাপতে পারেন।",
+    "voice_off": "কণ্ঠস্বর পাওয়া যাচ্ছে না। আপনি পড়ে চাপতে পারেন।",
+    "good": "খুব ভালো।",
+    "take_your_time": "ধীরে ধীরে করুন।"
+  },
+  "reminder": {
+    "due": "মনে করিয়ে দেওয়া",
+    "taken": "আমি করেছি",
+    "later": "পরে মনে করিয়ে দিন",
+    "snoozed": "আমি একটু পরে আবার মনে করিয়ে দেব।",
+    "thanks": "ধন্যবাদ। সব হয়ে গেছে।",
+    "category": { "medicine": "ওষুধ", "hydration": "জল", "activity": "কাজ", "appointment": "অ্যাপয়েন্টমেন্ট" }
+  },
+  "family": {
+    "record": "বার্তা রেকর্ড করুন", "stop": "থামুন", "play": "চালান", "delete": "মুছুন",
+    "consent": "এটি আমার নিজের আসল কণ্ঠ, এবং পরিবার এটি এই ডিভাইসে রাখতে সম্মত।",
+    "saved": "বার্তা এই ডিভাইসে সংরক্ষিত হয়েছে।"
+  },
+  "language": { "choose": "আপনার ভাষা বেছে নিন", "as": "অসমীয়া", "bn": "বাংলা", "ne": "नेपाली", "brx": "बड़ो", "mni": "মৈতৈলোন্", "en": "English" },
+  "disclaimer": { "support_tool": "স্মরণ একটি সহায়ক সরঞ্জাম, চিকিৎসা নির্ণয় নয়।" }
+}

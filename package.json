@@ -1,0 +1,22 @@
+{
+  "name": "smaran",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev:patient": "pnpm --filter @smaran/patient-web dev",
+    "build:patient": "pnpm --filter @smaran/patient-web build",
+    "test:e2e:patient": "pnpm --filter @smaran/patient-web test:e2e",
+    "dev:caregiver": "pnpm --filter @smaran/caregiver-web dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test:unit": "pnpm -r test:unit",
+    "test:e2e": "pnpm --filter @smaran/caregiver-web test:e2e && pnpm test:golden",
+    "test:golden": "playwright test -c e2e/playwright.config.ts",
+    "smoke": "services/api/.venv/bin/python services/api/scripts/smoke_golden.py"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "typescript": "^5.9.0"
+  }
+}

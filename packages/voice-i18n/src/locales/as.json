@@ -1,0 +1,31 @@
+{
+  "_meta": { "locale": "as", "needs_human_review": true, "source": "hand-drafted by AI, NOT verified by a native speaker" },
+  "app": { "name": "স্মৰণ", "tagline": "আৱেগৰ জৰিয়তে স্মৃতি বুজি পোৱা" },
+  "common": {
+    "yes": "হয়", "no": "নহয়", "next": "পিছৰটো", "repeat": "আকৌ কওক", "help": "সহায়", "done": "শেষ",
+    "back": "উভতি যাওক", "ok": "ঠিক আছে", "save": "সংৰক্ষণ কৰক", "cancel": "বাতিল", "listen": "কবলৈ ধৰি ৰাখক", "speak": "শুনক"
+  },
+  "greeting": { "morning": "শুভ প্ৰভাত, {{name}}।", "afternoon": "শুভ অপৰাহ্ন, {{name}}।", "evening": "শুভ সন্ধিয়া, {{name}}।" },
+  "voice": {
+    "listening": "মই শুনি আছোঁ।",
+    "didnt_catch": "ভাল আছে। আপুনি বুটাম টিপিব পাৰে।",
+    "voice_off": "মাত উপলব্ধ নহয়। আপুনি পঢ়ি টিপিব পাৰে।",
+    "good": "বহুত ভাল।",
+    "take_your_time": "লাহে লাহে কৰক।"
+  },
+  "reminder": {
+    "due": "সোঁৱৰণী",
+    "taken": "মই কৰিলোঁ",
+    "later": "পিছত সোঁৱৰাই দিয়ক",
+    "snoozed": "মই অলপ পিছত আকৌ সোঁৱৰাই দিম।",
+    "thanks": "ধন্যবাদ। সকলো হ’ল।",
+    "category": { "medicine": "ঔষধ", "hydration": "পানী", "activity": "কাম", "appointment": "অ্যাপইণ্টমেণ্ট" }
+  },
+  "family": {
+    "record": "বাৰ্তা ৰেকৰ্ড কৰক", "stop": "বন্ধ", "play": "বজাওক", "delete": "মচক",
+    "consent": "এইটো মোৰ নিজৰ প্ৰকৃত মাত, আৰু পৰিয়ালে এই ডিভাইচত ৰাখিবলৈ সন্মত।",
+    "saved": "বাৰ্তা এই ডিভাইচত সংৰক্ষণ কৰা হ’ল।"
+  },
+  "language": { "choose": "আপোনাৰ ভাষা বাছক", "as": "অসমীয়া", "bn": "বাংলা", "ne": "नेपाली", "brx": "बड़ो", "mni": "মৈতৈলোন্", "en": "English" },
+  "disclaimer": { "support_tool": "স্মৰণ এটা সহায়ক সঁজুলি, চিকিৎসা নিৰ্ণয় নহয়।" }
+}

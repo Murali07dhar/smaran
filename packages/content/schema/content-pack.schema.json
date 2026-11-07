@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://smaran.example/schemas/content-pack.schema.json",
+  "title": "SMARAN content pack",
+  "type": "object",
+  "required": ["pack_id", "version", "license", "locales", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "pack_id": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "license": { "type": "string", "enum": ["CC0-1.0"], "description": "Only CC0 or caregiver-uploaded media is allowed." },
+    "locales": { "type": "array", "items": { "enum": ["as", "bn", "ne", "brx", "mni", "en", "lus", "kha", "grt"] }, "minItems": 1 },
+    "items": { "type": "array", "items": { "$ref": "#/definitions/item" } }
+  },
+  "definitions": {
+    "item": {
+      "type": "object",
+      "required": ["id", "kind", "category", "labels", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["object", "photo", "step"] },
+        "category": { "type": "string", "minLength": 1, "description": "object: instruments|textiles|food|festivals. step: the routine id." },
+        "labels": { "type": "object", "required": ["en"], "additionalProperties": { "type": "string", "minLength": 1 } },
+        "image": { "type": "string" },
+        "icon": { "type": "string" },
+        "source": { "enum": ["cc0", "placeholder", "caregiver"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "routine_id": { "type": "string" },
+        "step_order": { "type": "integer", "minimum": 1 }
+      },
+      "allOf": [
+        { "if": { "properties": { "kind": { "const": "step" } } }, "then": { "required": ["routine_id", "step_order"] } },
+        { "if": { "properties": { "kind": { "enum": ["object", "photo"] } } }, "then": { "anyOf": [{ "required": ["image"] }, { "required": ["icon"] }] } }
+      ]
+    }
+  }
+}

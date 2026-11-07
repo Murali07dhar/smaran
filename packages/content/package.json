@@ -1,0 +1,6 @@
+{
+  "name": "@smaran/content", "version": "0.1.0", "private": true, "type": "module", "main": "src/index.ts", "types": "src/index.ts",
+  "files": ["packs", "assets", "schema", "src"],
+  "scripts": { "generate": "python3 scripts/gen-content.py", "validate": "node scripts/validate.mjs" },
+  "license": "CC0-1.0"
+}

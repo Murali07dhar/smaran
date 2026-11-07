@@ -1,0 +1,180 @@
+{
+ "pack_id": "routines",
+ "version": "1.0.0",
+ "license": "CC0-1.0",
+ "locales": [
+  "as",
+  "en"
+ ],
+ "items": [
+  {
+   "id": "step_morning_wake",
+   "kind": "step",
+   "category": "morning",
+   "routine_id": "morning",
+   "step_order": 1,
+   "labels": {
+    "en": "Wake up",
+    "as": "শুই উঠা"
+   },
+   "icon": "🌅",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_morning_wash_face",
+   "kind": "step",
+   "category": "morning",
+   "routine_id": "morning",
+   "step_order": 2,
+   "labels": {
+    "en": "Wash your face",
+    "as": "মুখ ধোৱা"
+   },
+   "icon": "💧",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_morning_brush_teeth",
+   "kind": "step",
+   "category": "morning",
+   "routine_id": "morning",
+   "step_order": 3,
+   "labels": {
+    "en": "Brush your teeth",
+    "as": "দাঁত ঘহা"
+   },
+   "icon": "🪥",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_morning_bathe",
+   "kind": "step",
+   "category": "morning",
+   "routine_id": "morning",
+   "step_order": 4,
+   "labels": {
+    "en": "Take a bath",
+    "as": "গা-পা ধোৱা"
+   },
+   "icon": "🛁",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_morning_pray",
+   "kind": "step",
+   "category": "morning",
+   "routine_id": "morning",
+   "step_order": 5,
+   "labels": {
+    "en": "Say a prayer",
+    "as": "প্ৰাৰ্থনা কৰা"
+   },
+   "icon": "🙏",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_morning_breakfast",
+   "kind": "step",
+   "category": "morning",
+   "routine_id": "morning",
+   "step_order": 6,
+   "labels": {
+    "en": "Have breakfast",
+    "as": "জলপান খোৱা"
+   },
+   "icon": "🥣",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_morning_medicine",
+   "kind": "step",
+   "category": "morning",
+   "routine_id": "morning",
+   "step_order": 7,
+   "labels": {
+    "en": "Take your medicine",
+    "as": "দৰব খোৱা"
+   },
+   "icon": "💊",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_make_tea_boil",
+   "kind": "step",
+   "category": "make_tea",
+   "routine_id": "make_tea",
+   "step_order": 1,
+   "labels": {
+    "en": "Boil water",
+    "as": "পানী উতলোৱা"
+   },
+   "icon": "🔥",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_make_tea_leaves",
+   "kind": "step",
+   "category": "make_tea",
+   "routine_id": "make_tea",
+   "step_order": 2,
+   "labels": {
+    "en": "Add tea leaves",
+    "as": "চাহপাত দিয়া"
+   },
+   "icon": "🍃",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_make_tea_milk",
+   "kind": "step",
+   "category": "make_tea",
+   "routine_id": "make_tea",
+   "step_order": 3,
+   "labels": {
+    "en": "Add milk and sugar",
+    "as": "গাখীৰ আৰু চেনি দিয়া"
+   },
+   "icon": "🥛",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_make_tea_simmer",
+   "kind": "step",
+   "category": "make_tea",
+   "routine_id": "make_tea",
+   "step_order": 4,
+   "labels": {
+    "en": "Let it simmer",
+    "as": "অলপ উতলিবলৈ দিয়া"
+   },
+   "icon": "♨️",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_make_tea_strain",
+   "kind": "step",
+   "category": "make_tea",
+   "routine_id": "make_tea",
+   "step_order": 5,
+   "labels": {
+    "en": "Strain the tea",
+    "as": "চাহ ছেকা"
+   },
+   "icon": "🥄",
+   "source": "placeholder"
+  },
+  {
+   "id": "step_make_tea_pour",
+   "kind": "step",
+   "category": "make_tea",
+   "routine_id": "make_tea",
+   "step_order": 6,
+   "labels": {
+    "en": "Pour into a cup",
+    "as": "কাপত ঢালা"
+   },
+   "icon": "☕",
+   "source": "placeholder"
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+# TLS 1.3 only. For a LAN / clinic without a public domain, replace the site addresses with
+# e.g. `smaran.lan` and add `tls internal` (Caddy local CA) inside each tls block.
+{
+	email {$ACME_EMAIL}
+}
+
+{$SMARAN_DOMAIN} {
+	tls {
+		protocols tls1.3
+	}
+	encode zstd gzip
+	reverse_proxy patient-web:8080
+}
+
+caregiver.{$SMARAN_DOMAIN} {
+	tls {
+		protocols tls1.3
+	}
+	encode zstd gzip
+	reverse_proxy caregiver-web:8080
+}

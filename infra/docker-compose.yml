@@ -1,0 +1,177 @@
+# SMARAN local / demo stack.   Validate:  make config
+# Run from repo root:  make up      (copies infra/.env.example -> infra/.env on first run)
+# Build context for every image is the repo root (".."), because the repo is a monorepo.
+name: smaran
+
+x-common: &common
+  restart: unless-stopped
+  init: true
+  security_opt:
+    - no-new-privileges:true
+
+x-api-env: &api-env
+  DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-smaran}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-smaran}
+  REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+  JWT_SECRET: ${JWT_SECRET}
+  MEDIA_KEY_B64: ${MEDIA_KEY_B64}
+  AI_SERVICE_URL: http://ai:8001
+  VOICE_SERVICE_URL: http://voice:8002
+  MEDIA_DIR: /data/media
+  MEDIA_URL_TTL_SECONDS: ${MEDIA_URL_TTL_SECONDS:-600}
+  SYNC_PULL_HOLDBACK_SECONDS: ${SYNC_PULL_HOLDBACK_SECONDS:-0}
+  STRICT_MODULES: "true"
+  ENVIRONMENT: ${ENVIRONMENT:-production}
+  CORS_ORIGINS: ${CORS_ORIGINS:-}
+
+services:
+  postgres:
+    <<: *common
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-smaran}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-smaran}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+
+  redis:
+    <<: *common
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD}"]
+    environment:
+      REDISCLI_AUTH: ${REDIS_PASSWORD}
+    volumes:
+      - redisdata:/data
+    ports:
+      - "127.0.0.1:${REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+
+  api:
+    <<: *common
+    build:
+      context: ..
+      dockerfile: infra/docker/api.Dockerfile
+      args:
+        REQUIREMENTS_FILE: ${API_REQUIREMENTS_FILE:-services/api/requirements.txt}
+    environment:
+      <<: *api-env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - media_data:/data/media
+    ports:
+      - "${API_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "/usr/local/bin/healthcheck.py", "http://127.0.0.1:8000/openapi.json"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+  # Optional sidecar: periodic insights scan (activity_drop / missed_reminders / score_drop when a
+  # patient stops syncing). Reuses the api image; skips migrations.
+  insights-scan:
+    <<: *common
+    build:
+      context: ..
+      dockerfile: infra/docker/api.Dockerfile
+      args:
+        REQUIREMENTS_FILE: ${API_REQUIREMENTS_FILE:-services/api/requirements.txt}
+    command: ["python", "-m", "app.modules.insights.scan", "--loop", "--interval-minutes", "${INSIGHTS_SCAN_INTERVAL_MINUTES:-360}"]
+    environment:
+      <<: *api-env
+      RUN_MIGRATIONS: "0"
+    depends_on:
+      api:
+        condition: service_healthy
+
+  ai:
+    <<: *common
+    build:
+      context: ..
+      dockerfile: infra/docker/ai.Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-smaran}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-smaran}
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${AI_PORT:-8001}:8001"
+    healthcheck:
+      test: ["CMD", "python", "/usr/local/bin/healthcheck.py", "http://127.0.0.1:8001/openapi.json"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+  voice:
+    <<: *common
+    build:
+      context: ..
+      dockerfile: infra/docker/voice.Dockerfile
+    environment:
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      MEDIA_DIR: /data/media
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - media_data:/data/media
+      - voice_models:/models
+    ports:
+      - "127.0.0.1:${VOICE_PORT:-8002}:8002"
+    healthcheck:
+      test: ["CMD", "python", "/usr/local/bin/healthcheck.py", "127.0.0.1:8002"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 120s   # model loading
+
+  patient-web:
+    <<: *common
+    build:
+      context: ..
+      dockerfile: infra/docker/patient-web.Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api/v1}
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "${PATIENT_WEB_PORT:-5173}:8080"
+
+  caregiver-web:
+    <<: *common
+    build:
+      context: ..
+      dockerfile: infra/docker/caregiver-web.Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api/v1}
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "${CAREGIVER_WEB_PORT:-5174}:8080"
+
+volumes:
+  pgdata:
+  redisdata:
+  media_data:   # shared encrypted media store (api writes, voice reads/writes clips)
+  voice_models:

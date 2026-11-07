@@ -1,0 +1,68 @@
+{
+  "name": "smaran-fer-cnn",
+  "version": "0.0-smoke",
+  "trained": false,
+  "warning": "UNTRAINED PLACEHOLDER: random weights, predictions are meaningless.",
+  "input": {
+    "name": "input",
+    "shape": [
+      "N",
+      1,
+      48,
+      48
+    ],
+    "dtype": "float32",
+    "preprocess": "grayscale, face crop, resize 48x48, pixel/255.0, no mean subtraction"
+  },
+  "outputs": {
+    "logits": [
+      "N",
+      7
+    ],
+    "probs": [
+      "N",
+      7
+    ]
+  },
+  "classes": [
+    "angry",
+    "disgust",
+    "fear",
+    "happy",
+    "sad",
+    "surprise",
+    "neutral"
+  ],
+  "class_valence_arousal": {
+    "angry": [
+      -0.65,
+      0.7
+    ],
+    "disgust": [
+      -0.6,
+      0.35
+    ],
+    "fear": [
+      -0.65,
+      0.75
+    ],
+    "happy": [
+      0.8,
+      0.45
+    ],
+    "sad": [
+      -0.7,
+      -0.45
+    ],
+    "surprise": [
+      0.15,
+      0.8
+    ],
+    "neutral": [
+      0.0,
+      0.0
+    ]
+  },
+  "face_reading_from_probs": "valence=sum(p_k*v_k); arousal=sum(p_k*a_k); conf=max(p_k)  -> POST /ai/emotion/fuse face",
+  "training_data_caveat": "FER-2013 is not representative of elderly faces or North-East India. Keep capture optional; caregiver confirms."
+}

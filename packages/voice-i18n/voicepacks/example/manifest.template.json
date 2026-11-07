@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "pack_id": "lus-v1-TEMPLATE",
+  "locale": "lus",
+  "version": "0.0.0",
+  "codec": "opus",
+  "mime": "audio/ogg; codecs=opus",
+  "speaker": {
+    "consent_recorded": false,
+    "credit": "FILL IN: real native speaker, with written consent"
+  },
+  "license": "caregiver-owned",
+  "verified_by_native_speaker": false,
+  "clips": [
+    {
+      "id": "greeting.morning",
+      "file": "clips/greeting.morning.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    },
+    {
+      "id": "greeting.evening",
+      "file": "clips/greeting.evening.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    },
+    {
+      "id": "reminder.medicine",
+      "file": "clips/reminder.medicine.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    },
+    {
+      "id": "reminder.hydration",
+      "file": "clips/reminder.hydration.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    },
+    {
+      "id": "reminder.activity",
+      "file": "clips/reminder.activity.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    },
+    {
+      "id": "reminder.appointment",
+      "file": "clips/reminder.appointment.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    },
+    {
+      "id": "intent.yes",
+      "file": "clips/intent.yes.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    },
+    {
+      "id": "intent.no",
+      "file": "clips/intent.no.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    },
+    {
+      "id": "encourage.good",
+      "file": "clips/encourage.good.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    },
+    {
+      "id": "prompt.listen_now",
+      "file": "clips/prompt.listen_now.opus",
+      "text": "FILL IN transcript in Mizo",
+      "duration_ms": 0
+    }
+  ]
+}

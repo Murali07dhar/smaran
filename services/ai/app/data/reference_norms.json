@@ -1,0 +1,7 @@
+{
+  "_note": "SYNTHETIC PLACEHOLDER NORMS. Not clinically validated. Replace with norms from a validated cohort before any real use.",
+  "accuracy":   {"mean": 0.72, "sd": 0.15},
+  "hint_rate":  {"mean": 0.20, "sd": 0.15},
+  "cue_recall": {"mean": 0.60, "sd": 0.20},
+  "level":      {"mean": 5.0,  "sd": 2.0}
+}

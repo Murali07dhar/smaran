@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://smaran.example/schemas/game-event.schema.json",
+  "title": "GameEvent",
+  "type": "object",
+  "required": ["event_id", "session_id", "type", "item_id", "with_cue", "ts"],
+  "additionalProperties": false,
+  "properties": {
+    "event_id": { "type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "session_id": { "type": "string", "minLength": 1 },
+    "type": { "enum": ["item_shown", "answer", "hint_used", "cue_shown", "timeout", "reaction"] },
+    "item_id": { "type": "string", "minLength": 1 },
+    "correct": { "type": "boolean" },
+    "response_ms": { "type": "integer", "minimum": 0 },
+    "cue_id": { "type": "string", "minLength": 1 },
+    "with_cue": { "type": "boolean", "description": "true exactly when cue_id is present" },
+    "ts": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    { "if": { "properties": { "with_cue": { "const": true } } }, "then": { "required": ["cue_id"] }, "else": { "not": { "required": ["cue_id"] } } }
+  ]
+}

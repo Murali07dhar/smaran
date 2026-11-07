@@ -1,0 +1,275 @@
+{
+ "pack_id": "assam_culture",
+ "version": "1.0.0",
+ "license": "CC0-1.0",
+ "locales": [
+  "as",
+  "en"
+ ],
+ "items": [
+  {
+   "id": "obj_dhol",
+   "kind": "object",
+   "category": "instruments",
+   "labels": {
+    "en": "Dhol (drum)",
+    "as": "ঢোল"
+   },
+   "image": "assets/objects/dhol.svg",
+   "icon": "🥁",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_pepa",
+   "kind": "object",
+   "category": "instruments",
+   "labels": {
+    "en": "Pepa (buffalo-horn pipe)",
+    "as": "পেঁপা"
+   },
+   "image": "assets/objects/pepa.svg",
+   "icon": "📯",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_gogona",
+   "kind": "object",
+   "category": "instruments",
+   "labels": {
+    "en": "Gogona (reed instrument)",
+    "as": "গগনা"
+   },
+   "image": "assets/objects/gogona.svg",
+   "icon": "🎶",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_toka",
+   "kind": "object",
+   "category": "instruments",
+   "labels": {
+    "en": "Toka (bamboo clapper)",
+    "as": "তকা"
+   },
+   "image": "assets/objects/toka.svg",
+   "icon": "🎋",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_bhortal",
+   "kind": "object",
+   "category": "instruments",
+   "labels": {
+    "en": "Bhortal (cymbals)",
+    "as": "ভোৰতাল"
+   },
+   "image": "assets/objects/bhortal.svg",
+   "icon": "🔔",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_gamosa",
+   "kind": "object",
+   "category": "textiles",
+   "labels": {
+    "en": "Gamosa",
+    "as": "গামোছা"
+   },
+   "image": "assets/objects/gamosa.svg",
+   "icon": "🧣",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_muga_silk",
+   "kind": "object",
+   "category": "textiles",
+   "labels": {
+    "en": "Muga silk",
+    "as": "মুগা"
+   },
+   "image": "assets/objects/muga_silk.svg",
+   "icon": "🧵",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_mekhela_chador",
+   "kind": "object",
+   "category": "textiles",
+   "labels": {
+    "en": "Mekhela chador",
+    "as": "মেখেলা চাদৰ"
+   },
+   "image": "assets/objects/mekhela_chador.svg",
+   "icon": "👘",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_japi",
+   "kind": "object",
+   "category": "textiles",
+   "labels": {
+    "en": "Japi (bamboo hat)",
+    "as": "জাপি"
+   },
+   "image": "assets/objects/japi.svg",
+   "icon": "👒",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_handloom",
+   "kind": "object",
+   "category": "textiles",
+   "labels": {
+    "en": "Handloom yarn",
+    "as": "তাঁত"
+   },
+   "image": "assets/objects/handloom.svg",
+   "icon": "🧶",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_pitha",
+   "kind": "object",
+   "category": "food",
+   "labels": {
+    "en": "Pitha (rice cake)",
+    "as": "পিঠা"
+   },
+   "image": "assets/objects/pitha.svg",
+   "icon": "🥞",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_laru",
+   "kind": "object",
+   "category": "food",
+   "labels": {
+    "en": "Laru (sweet ball)",
+    "as": "লাড়ু"
+   },
+   "image": "assets/objects/laru.svg",
+   "icon": "🍡",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_masor_tenga",
+   "kind": "object",
+   "category": "food",
+   "labels": {
+    "en": "Masor tenga (sour fish curry)",
+    "as": "মাছৰ টেঙা"
+   },
+   "image": "assets/objects/masor_tenga.svg",
+   "icon": "🍲",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_tea",
+   "kind": "object",
+   "category": "food",
+   "labels": {
+    "en": "Tea",
+    "as": "চাহ"
+   },
+   "image": "assets/objects/tea.svg",
+   "icon": "🍵",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_rice",
+   "kind": "object",
+   "category": "food",
+   "labels": {
+    "en": "Rice",
+    "as": "ভাত"
+   },
+   "image": "assets/objects/rice.svg",
+   "icon": "🍚",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_jolpan",
+   "kind": "object",
+   "category": "food",
+   "labels": {
+    "en": "Jolpan (breakfast snack)",
+    "as": "জলপান"
+   },
+   "image": "assets/objects/jolpan.svg",
+   "icon": "🥣",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_khar",
+   "kind": "object",
+   "category": "food",
+   "labels": {
+    "en": "Khar (alkaline dish)",
+    "as": "খাৰ"
+   },
+   "image": "assets/objects/khar.svg",
+   "icon": "🥬",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_bohag_bihu",
+   "kind": "object",
+   "category": "festivals",
+   "labels": {
+    "en": "Bohag Bihu",
+    "as": "বহাগ বিহু"
+   },
+   "image": "assets/objects/bohag_bihu.svg",
+   "icon": "🌸",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_magh_bihu",
+   "kind": "object",
+   "category": "festivals",
+   "labels": {
+    "en": "Magh Bihu",
+    "as": "মাঘ বিহু"
+   },
+   "image": "assets/objects/magh_bihu.svg",
+   "icon": "🔥",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_kati_bihu",
+   "kind": "object",
+   "category": "festivals",
+   "labels": {
+    "en": "Kati Bihu",
+    "as": "কাতি বিহু"
+   },
+   "image": "assets/objects/kati_bihu.svg",
+   "icon": "🪔",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_durga_puja",
+   "kind": "object",
+   "category": "festivals",
+   "labels": {
+    "en": "Durga Puja",
+    "as": "দুৰ্গা পূজা"
+   },
+   "image": "assets/objects/durga_puja.svg",
+   "icon": "🙏",
+   "source": "placeholder"
+  },
+  {
+   "id": "obj_ali_ai_ligang",
+   "kind": "object",
+   "category": "festivals",
+   "labels": {
+    "en": "Ali-Ai-Ligang",
+    "as": "আলি আই লিগাং"
+   },
+   "image": "assets/objects/ali_ai_ligang.svg",
+   "icon": "🌾",
+   "source": "placeholder"
+  }
+ ]
+}

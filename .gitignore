@@ -1,0 +1,26 @@
+.env
+!.env.example
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+*.db
+*.sqlite
+.venv/
+.run/
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo
+
+# Environment secrets
+.env.*
+!.env.example
+
+# Runtime and generated files
+*.log
+*.pid
+.DS_Store
+coverage/
+.vite/
+dev-dist/

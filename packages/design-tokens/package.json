@@ -1,0 +1,8 @@
+{
+  "name": "@smaran/design-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": ["tokens.json", "tailwind-preset.js", "index.js", "index.d.ts"]
+}

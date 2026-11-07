@@ -1,0 +1,4 @@
+{
+  "_meta": { "locale": "brx", "needs_human_review": true, "status": "untranslated_fallback_to_en", "source": "empty: run 'pnpm translate' (IndicTrans2) to draft, then have a native speaker review" },
+  "language": { "choose": "Choose your language", "as": "অসমীয়া", "bn": "বাংলা", "ne": "नेपाली", "brx": "बड़ो", "mni": "মৈতৈলোন্", "en": "English" }
+}

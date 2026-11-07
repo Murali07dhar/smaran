@@ -1,0 +1,83 @@
+{
+ "pack_id": "demo_photos_stand_in_for_caregiver_uploads",
+ "version": "1.0.0",
+ "license": "CC0-1.0",
+ "locales": [
+  "as",
+  "en"
+ ],
+ "items": [
+  {
+   "id": "photo_home",
+   "kind": "photo",
+   "category": "my_photos",
+   "labels": {
+    "en": "Home",
+    "as": "ঘৰ"
+   },
+   "image": "assets/photos/home.svg",
+   "icon": "🏡",
+   "source": "placeholder"
+  },
+  {
+   "id": "photo_garden",
+   "kind": "photo",
+   "category": "my_photos",
+   "labels": {
+    "en": "Garden",
+    "as": "বাগান"
+   },
+   "image": "assets/photos/garden.svg",
+   "icon": "🌼",
+   "source": "placeholder"
+  },
+  {
+   "id": "photo_temple",
+   "kind": "photo",
+   "category": "my_photos",
+   "labels": {
+    "en": "Temple",
+    "as": "নামঘৰ"
+   },
+   "image": "assets/photos/temple.svg",
+   "icon": "🛕",
+   "source": "placeholder"
+  },
+  {
+   "id": "photo_riverside",
+   "kind": "photo",
+   "category": "my_photos",
+   "labels": {
+    "en": "Riverside",
+    "as": "নদীৰ পাৰ"
+   },
+   "image": "assets/photos/riverside.svg",
+   "icon": "🌅",
+   "source": "placeholder"
+  },
+  {
+   "id": "photo_market",
+   "kind": "photo",
+   "category": "my_photos",
+   "labels": {
+    "en": "Market",
+    "as": "বজাৰ"
+   },
+   "image": "assets/photos/market.svg",
+   "icon": "🧺",
+   "source": "placeholder"
+  },
+  {
+   "id": "photo_tea_garden",
+   "kind": "photo",
+   "category": "my_photos",
+   "labels": {
+    "en": "Tea garden",
+    "as": "চাহ বাগিচা"
+   },
+   "image": "assets/photos/tea_garden.svg",
+   "icon": "🍃",
+   "source": "placeholder"
+  }
+ ]
+}

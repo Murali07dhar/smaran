@@ -1,0 +1,31 @@
+{
+  "_meta": { "locale": "en", "needs_human_review": false, "source": "authored" },
+  "app": { "name": "SMARAN", "tagline": "Understanding Memory Through Emotion" },
+  "common": {
+    "yes": "Yes", "no": "No", "next": "Next", "repeat": "Say again", "help": "Help", "done": "Done",
+    "back": "Back", "ok": "OK", "save": "Save", "cancel": "Cancel", "listen": "Hold to talk", "speak": "Listen"
+  },
+  "greeting": { "morning": "Good morning, {{name}}.", "afternoon": "Good afternoon, {{name}}.", "evening": "Good evening, {{name}}." },
+  "voice": {
+    "listening": "I am listening.",
+    "didnt_catch": "That is alright. You can tap a button instead.",
+    "voice_off": "Voice is not available. You can read and tap.",
+    "good": "Lovely.",
+    "take_your_time": "Take your time."
+  },
+  "reminder": {
+    "due": "Reminder",
+    "taken": "I have done it",
+    "later": "Remind me later",
+    "snoozed": "I will remind you again soon.",
+    "thanks": "Thank you. All done.",
+    "category": { "medicine": "Medicine", "hydration": "Water", "activity": "Activity", "appointment": "Appointment" }
+  },
+  "family": {
+    "record": "Record a message", "stop": "Stop", "play": "Play", "delete": "Delete",
+    "consent": "This is my own real voice, and the family agrees to keep it on this device.",
+    "saved": "Message saved on this device."
+  },
+  "language": { "choose": "Choose your language", "as": "অসমীয়া", "bn": "বাংলা", "ne": "नेपाली", "brx": "बड़ो", "mni": "মৈতৈলোন্", "en": "English" },
+  "disclaimer": { "support_tool": "SMARAN is a support tool, not a medical diagnosis." }
+}
